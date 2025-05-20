@@ -2,28 +2,28 @@ export const products = [
   {
     id: 1,
     name: "2023 Japanese Pokemon 151 Mewtwo #150 CGC 10",
-    priceUsdc: "30000000",
+    priceUsdc: "35000000",
     imageUrl:
       "https://crimson-calm-beetle-499.mypinata.cloud/ipfs/QmTWagrA7D2uujFXxYtW6eGXnuHuUoFV6femzazDQdRq1T/cgc1401035862047-2.jpg?img-width=512&img-height=512",
   },
   {
     id: 2,
     name: "2023 Scarlet & Violet Spidops EX #223 PSA 10",
-    priceUsdc: "38000000",
+    priceUsdc: "43000000",
     imageUrl:
       "https://crimson-calm-beetle-499.mypinata.cloud/ipfs/QmU113yUSUoeH5vgjLwPPyrPniqS3YFQ7tuXi8j4JxN5CN/psa87186190-2.jpg?img-width=512&img-height=512",
   },
   {
     id: 3,
     name: "2020 Japanese Amazing Volt Tackle Galarian Darmanitan V #103 PSA 10",
-    priceUsdc: "11000000",
+    priceUsdc: "78500000",
     imageUrl:
       "https://crimson-calm-beetle-499.mypinata.cloud/ipfs/QmTKDJxthWGUqnesX2Fo6KWx6ZBMcuhKHw4mwca1rUTkid/psa80402954-2.jpg?img-width=512&img-height=512",
   },
   {
     id: 4,
     name: "2023 Japanese Classic Collection Venusaur #3 CGC 10",
-    priceUsdc: "50000000",
+    priceUsdc: "57400000",
     imageUrl:
       "https://crimson-calm-beetle-499.mypinata.cloud/ipfs/QmZtrycvVFNX99ifNT8QMzHugyGkq5GYvaKTL9erXFkbi9/cgc1401020836029-2.jpg?img-width=512&img-height=512",
   },
