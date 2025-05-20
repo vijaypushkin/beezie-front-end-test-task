@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Front-End Test Task
 
-## Getting Started
+Welcome! This task is designed to simulate real work you’d be doing here.
 
-First, run the development server:
+### Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Use this stack (already included in the repo):
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js** (App Router)
+- **Tailwind CSS**
+- **pnpm**
+- **TanStack Query**
+- **TypeScript**
+- **ethers v6**
+- **TypeChain**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Objectives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The main objective is to build a responsive, well-documented, and maintainable products page.
 
-## Learn More
+Below are step-by-step instructions to complete the objective.
 
-To learn more about Next.js, take a look at the following resources:
+1. Create `/src/hooks/products/useProducts.ts` and use TanStack Query to fetch product data from `/api/products`.
+2. Use the hook you've created in step 1 to load the products on the home page. Handle loading and error states.
+3. Create `/src/services/web3/contracts`, connect the USDC factory from TypeChain to the provider and the USDC address in `/src/constants/addresses.ts`, and export it.
+4. Create `/src/hooks/web3/useUsdcDecimals.ts` and use TanStack Query with the contract you've created in step 3 to get the number of decimals that the USDC token has.
+5. Use the hook you've created in step 2 to get the USDC decimals on the home page. Handle loading and error states.
+6. Define `processedProducts` on the home page. The items of this array should have their prices parsed to USDC using ethers and the decimals and be sorted by price low to high.
+7. Create `/src/components/core/itemCard.tsx` that returns an item card component that displays the item image, name, and price, and has a buy button that `console.log`s the item when clicked.
+8. Display the products in a grid layout on the home page.
+9. Create `/src/hooks/web3/useUserBalance.ts` and use TanStack Query with the contract you've created in step 3 to get the amount of USDC that the user wallet address in `/src/constants/addresses.ts` has.
+10. Define `processedUsdcBalance` on the home page. This value should have the USDC balance parsed to USDC using ethers and the decimals.
+11. Display the user's balance on the home page.
+12. Disable the buy buttons on the items that the user cannot afford.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Rules
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Do not install any new packages such as Axios.
+- The project must be able to build successfully using `pnpm build`.
+- The page must be responsive for desktop, mobile, and tablets.
+- The page must follow the Figma design.
+- The parts of code that could be confusing must be explained using comments.
+- The code must be formatted with Prettier.
