@@ -41,3 +41,4 @@ Below are step-by-step instructions to complete the objective.
 - The page must follow the Figma design.
 - The parts of code that could be confusing must be explained using comments.
 - The code must be formatted with Prettier.
+- The code must be type-safe and not use `any` or casting to `unknown`.
