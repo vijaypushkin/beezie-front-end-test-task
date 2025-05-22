@@ -10,7 +10,7 @@ const sortOptions = [
   { label: "Price high to low", value: "high" },
 ];
 
-const HomePageToolbar: React.FC = () => {
+const HPToolbar: React.FC = () => {
   const [sort, setSort] = useState("low");
   const [search, setSearch] = useState("");
 
@@ -66,4 +66,4 @@ const HomePageToolbar: React.FC = () => {
   );
 };
 
-export { HomePageToolbar };
+export { HPToolbar };

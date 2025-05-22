@@ -10,6 +10,8 @@
 
   --text-primary: #FFFFFF;
   --text-secondary: #9C9C9C;
+
+   --my-auto-rows: minmax(410px, 2fr);
 }
 
 @theme inline {
