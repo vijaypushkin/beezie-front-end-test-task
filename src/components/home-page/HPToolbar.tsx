@@ -27,7 +27,7 @@ const HPToolbar: React.FC<HPToolbarProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 mb-6">
-      <h1 className="text-4xl font-bold text-white font-(family-name:--font-montserrat)">
+      <h1 className="text-[26px] md:text-4xl font-bold text-white font-(family-name:--font-montserrat)">
         Pokemon
       </h1>
 

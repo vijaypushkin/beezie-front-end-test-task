@@ -74,7 +74,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       </button>
 
       {open && (
-        <div className="absolute z-10 mt-1 w-full bg-gray-input border bg-(--bg-secondary)  rounded-md shadow-md">
+        <div className="absolute right-0 z-10 mt-1 w-full bg-gray-input border bg-(--bg-secondary) rounded-md shadow-md min-w-[200px]">
           {options.map((opt) => (
             <div
               key={opt.value}
