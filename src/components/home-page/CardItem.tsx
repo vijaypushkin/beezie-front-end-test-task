@@ -3,40 +3,42 @@ import Image from "next/image";
 type CardItemProps = {
   image: string;
   title: string;
-  price: string;
+  price: string | null;
   onBuy?: () => void;
   disabled?: boolean;
 };
 
-const CardItem = ({ image, title, price, onBuy, disabled }: CardItemProps) => {
+const CardItem: React.FC<CardItemProps> = ({
+  image,
+  title,
+  price,
+  onBuy,
+  disabled,
+}) => {
   return (
-    <div className="rounded-2xl overflow-hidden flex flex-col">
+    <div className="rounded-2xl overflow-hidden flex flex-col p-2">
       {/* Image */}
-      <div className="aspect-[3/4] rounded-lg overflow-hidden bg-white mb-4">
+      <div className="aspect-square rounded-lg overflow-hidden bg-white mb-4">
         <Image
           src={image}
           alt={title}
           width={300}
           height={400}
+          unoptimized
           className="w-full h-full object-contain"
         />
       </div>
 
       {/* Title */}
-      <div className="text-sm font-medium leading-tight mb-2">{title}</div>
+      <div className="text-sm font-medium leading-tight mb-2 line-clamp-3 min-h-[2.5rem] whitespace-pre-line">
+        {title.split("#").join("\n#")}
+      </div>
 
       {/* Price */}
-      <div className="text-lg font-semibold">${price}</div>
-
-      {/* Buy button (optional) */}
-      {onBuy && (
-        <button
-          onClick={onBuy}
-          disabled={disabled}
-          className="mt-3 bg-yellow-brand hover:bg-yellow-400 text-black font-medium py-2 px-4 rounded-md disabled:opacity-40"
-        >
-          Buy
-        </button>
+      {price ? (
+        <div className="text-lg font-semibold justify-self-end">${price}</div>
+      ) : (
+        <div className="h-6 w-20 bg-gray-300 rounded-md animate-pulse  justify-self-end" />
       )}
     </div>
   );

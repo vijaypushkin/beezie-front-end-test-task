@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+
 import { Input } from "@/components/ui/Input";
 import { Dropdown } from "@/components/ui/Dropdown";
 
@@ -10,10 +10,19 @@ const sortOptions = [
   { label: "Price high to low", value: "high" },
 ];
 
-const HPToolbar: React.FC = () => {
-  const [sort, setSort] = useState("low");
-  const [search, setSearch] = useState("");
+type HPToolbarProps = {
+  query: string;
+  setQuery: (query: string) => void;
+  sort: string;
+  setSort: (sort: string) => void;
+};
 
+const HPToolbar: React.FC<HPToolbarProps> = ({
+  query,
+  setQuery,
+  sort,
+  setSort,
+}) => {
   return (
     <div className="flex flex-col gap-4 mb-6">
       <h1 className="text-2xl font-semibold text-white">Pokemon</h1>
@@ -33,8 +42,8 @@ const HPToolbar: React.FC = () => {
         <div className="flex-1 min-w-[200px]">
           <Input
             placeholder="Search by name, set name, or anything"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             icon={
               <Image
                 src="/assets/icons/search.svg"
