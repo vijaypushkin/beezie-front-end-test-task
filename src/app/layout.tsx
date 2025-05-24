@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Karla, Montserrat } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 import { Header } from "@/components/app-shell/Header";
 import { Footer } from "@/components/app-shell/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const karla = Karla({
+  variable: "--font-karla",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -26,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${karla.variable} ${montserrat.variable} antialiased`}>
         <Providers>
           <Header />
           {children}

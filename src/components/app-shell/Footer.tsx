@@ -3,7 +3,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="px-6 py-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 items-start">
+      <div className="max-w-7xl mx-auto flex flex-col gap-12 md:flex-row justify-between items-start">
         {/* Logo and Social Icons */}
         <div className="space-y-6 col-span-1">
           <div className="text-brand text-3xl font-bold">
@@ -32,64 +32,65 @@ const Footer = () => {
         </div>
 
         {/* Links */}
-        <div className="space-y-4">
-          <h3 className="text-gray-placeholder font-medium">Colony</h3>
-          <ul className="space-y-1">
-            <li>
-              <a href="#" className="hover:text-brand">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-brand">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-brand">
-                Team
-              </a>
-            </li>
-          </ul>
-        </div>
+        <div className="flex gap-20 text-md font-bold">
+          <div className="space-y-8">
+            <h3 className="text-(--text-secondary)">Colony</h3>
+            <ul className="space-y-8">
+              <li>
+                <a href="#" className="hover:text-brand">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-brand">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-brand">
+                  Team
+                </a>
+              </li>
+            </ul>
+          </div>
 
-        <div className="space-y-4">
-          <h3 className="text-gray-placeholder font-medium">Support</h3>
-          <ul className="space-y-1">
-            <li>
-              <a href="#" className="hover:text-brand">
-                Documentation
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-brand">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-brand">
-                Terms of Service
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-brand">
-                Privacy
-              </a>
-            </li>
-          </ul>
+          <div className="space-y-8">
+            <h3 className="text-(--text-secondary)">Support</h3>
+            <ul className="space-y-8">
+              <li>
+                <a href="#" className="hover:text-brand">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-yellow-brand">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-yellow-brand">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-yellow-brand">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        {/* Spacer (to align the right callout) */}
-        <div className="hidden lg:block" />
 
         {/* CTA */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold">
+        <div className="flex flex-col gap-10 items-center">
+          <h3 className="text-[26px] font-semibold">
             Sign up to join our beta access
           </h3>
-          <button className="bg-yellow-brand text-black px-5 py-3 rounded-md font-medium hover:bg-yellow-400 transition">
-            Join now
-          </button>
+          <div>
+            <button className="bg-(--brand) text-black px-12 py-3 rounded-md font-medium transition">
+              Join now
+            </button>
+          </div>
         </div>
       </div>
     </footer>

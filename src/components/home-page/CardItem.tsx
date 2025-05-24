@@ -16,9 +16,9 @@ const CardItem: React.FC<CardItemProps> = ({
   disabled,
 }) => {
   return (
-    <div className="rounded-2xl overflow-hidden flex flex-col p-2">
+    <div className="overflow-hidden flex flex-col mb-[30px] md:mb-0">
       {/* Image */}
-      <div className="aspect-square rounded-lg overflow-hidden bg-white mb-4">
+      <div className="aspect-square rounded-2xl overflow-hidden bg-white mb-4">
         <Image
           src={image}
           alt={title}
@@ -30,13 +30,15 @@ const CardItem: React.FC<CardItemProps> = ({
       </div>
 
       {/* Title */}
-      <div className="text-sm font-medium leading-tight mb-2 line-clamp-3 min-h-[2.5rem] whitespace-pre-line">
+      <div className=" font-normal leading-tight mb-2 line-clamp-3 min-h-[2.5rem] whitespace-pre-line">
         {title.split("#").join("\n#")}
       </div>
 
       {/* Price */}
       {price ? (
-        <div className="text-lg font-semibold justify-self-end">${price}</div>
+        <div className="text-[26px] font-semibold justify-self-end font-(family-name:--font-montserrat)">
+          ${price}
+        </div>
       ) : (
         <div className="h-6 w-20 bg-gray-300 rounded-md animate-pulse  justify-self-end" />
       )}

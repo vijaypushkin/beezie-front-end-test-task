@@ -12,7 +12,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex items-center bg-gray-input border rounded-md text-white text-sm",
+          "flex items-center bg-gray-input border rounded-md text-white overflow-hidden",
           isFullwidth && "w-full",
           className
         )}
@@ -24,7 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {rightIcon && (
-          <div className="pr-3 border-l border-gray-border pl-3">
+          <div className=" border-l border-gray-border bg-(--bg-secondary)/20 h-full grid place-items-center w-15">
             {rightIcon}
           </div>
         )}

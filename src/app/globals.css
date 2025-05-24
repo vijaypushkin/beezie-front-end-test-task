@@ -3,6 +3,8 @@
 @theme {
   --brand: #F5A600;
 
+  --tertiary: #8EC400;
+
   --bg-primary: #131313;
   --bg-secondary: #302E2E;
 
@@ -11,7 +13,10 @@
   --text-primary: #FFFFFF;
   --text-secondary: #9C9C9C;
 
-   --my-auto-rows: minmax(410px, 2fr);
+  --my-auto-rows: minmax(410px, 2fr);
+
+  --font-default: var(--font-karla);
+  --font-banner: var(--font-montserrat);
 }
 
 @theme inline {
@@ -19,6 +24,8 @@
   --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,10 +39,14 @@
   * {
     border-color: var(--border-primary, currentColor);
   }
+
+  button {
+    @apply cursor-pointer active:translate-y-px;
+  }
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-karla), Arial, Helvetica, sans-serif;
 }

@@ -15,6 +15,7 @@ type HPToolbarProps = {
   setQuery: (query: string) => void;
   sort: string;
   setSort: (sort: string) => void;
+  onOpenFilter: () => void;
 };
 
 const HPToolbar: React.FC<HPToolbarProps> = ({
@@ -22,28 +23,35 @@ const HPToolbar: React.FC<HPToolbarProps> = ({
   setQuery,
   sort,
   setSort,
+  onOpenFilter,
 }) => {
   return (
     <div className="flex flex-col gap-4 mb-6">
-      <h1 className="text-2xl font-semibold text-white">Pokemon</h1>
+      <h1 className="text-4xl font-bold text-white font-(family-name:--font-montserrat)">
+        Pokemon
+      </h1>
 
-      <div className="flex flex-wrap items-center gap-3 w-full">
+      <div className="flex items-center gap-3 w-full h-13">
         {/* Filter Icon Button */}
-        <button className="flex items-center justify-center w-10 h-10 rounded-md border border-gray-border text-white hover:bg-gray-card">
+        <button
+          className="w-[52px] flex items-center justify-center md:w-18 rounded-md border border-gray-border text-white hover:bg-gray-card h-11 md:h-13"
+          onClick={onOpenFilter}
+        >
           <Image
             src="/assets/icons/filter.svg"
             alt="Filter"
-            width={20}
-            height={20}
+            width={24}
+            height={24}
           />
         </button>
 
         {/* Search Bar */}
-        <div className="flex-1 min-w-[200px]">
+        <div className="flex-1">
           <Input
             placeholder="Search by name, set name, or anything"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            className="h-11 md:h-13"
             icon={
               <Image
                 src="/assets/icons/search.svg"
@@ -68,7 +76,8 @@ const HPToolbar: React.FC<HPToolbarProps> = ({
           value={sort}
           onChange={setSort}
           options={sortOptions}
-          className="min-w-[180px]"
+          className="md:w-inherit md:min-w-[210px] h-11 md:h-13"
+          icon="/assets/icons/sort.svg"
         />
       </div>
     </div>
