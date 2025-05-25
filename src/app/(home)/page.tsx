@@ -10,7 +10,7 @@ export default async function Home() {
   const queryClient = getQueryClient();
 
   await queryClient.ensureQueryData(productsQueryOptions);
-  queryClient.prefetchQuery(getUsdcDecimalsOptions); // ? secondary query, so need to wait
+  queryClient.prefetchQuery(getUsdcDecimalsOptions); // ? secondary query, so no need to wait
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

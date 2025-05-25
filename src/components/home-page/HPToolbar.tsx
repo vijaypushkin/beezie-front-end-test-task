@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Input } from "@/components/ui/Input";
 import { Dropdown } from "@/components/ui/Dropdown";
 
+import { UserBalance } from "./UserBalance";
+
 const sortOptions = [
   { label: "Price low to high", value: "low" },
   { label: "Price high to low", value: "high" },
@@ -27,9 +29,11 @@ const HPToolbar: React.FC<HPToolbarProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 mb-6">
-      <h1 className="text-[26px] md:text-4xl font-bold text-white font-(family-name:--font-montserrat)">
-        Pokemon
-      </h1>
+      <div className="flex items-center justify-between font-(family-name:--font-montserrat)">
+        <h1 className="text-[26px] md:text-4xl font-bold ">Pokemon</h1>
+
+        <UserBalance />
+      </div>
 
       <div className="flex items-center gap-3 w-full h-13">
         {/* Filter Icon Button */}

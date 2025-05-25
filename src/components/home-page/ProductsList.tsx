@@ -1,13 +1,17 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { CardItem } from "./CardItem";
-import { productsQueryOptions } from "@/api/queries/products.queries";
-import { formatUnits } from "ethers";
-import { getUsdcDecimalsOptions } from "@/api/queries/usdc.queries";
 import { useMemo } from "react";
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+
+import { productsQueryOptions } from "@/api/queries/products.queries";
+import {
+  getUsdcDecimalsOptions,
+  getUserBalanceOptions,
+} from "@/api/queries/usdc.queries";
+
+import { CardItem } from "./CardItem";
 import { Pill } from "../ui/Pill";
+import { addresses } from "@/constants/addresses";
 
 type ProductsListProps = {
   query: string;
@@ -22,9 +26,19 @@ const ProductsList: React.FC<ProductsListProps> = ({
   sort,
   onFilterClick,
 }) => {
-  const { data = [], isPending } = useQuery(productsQueryOptions);
+  const { data = [], isPending, error } = useQuery(productsQueryOptions);
 
-  const { data: decimals } = useQuery(getUsdcDecimalsOptions);
+  const {
+    data: decimals,
+    isPending: isPendingDecimals,
+    error: decimalsError,
+  } = useQuery(getUsdcDecimalsOptions);
+
+  const {
+    data: balance,
+    isPending: isPendingBalance,
+    error: balanceError,
+  } = useQuery(getUserBalanceOptions(addresses.user));
 
   const filteredData = useMemo(() => {
     return data
@@ -78,15 +92,37 @@ const ProductsList: React.FC<ProductsListProps> = ({
       <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] md:gap-[30px]">
         {isPending &&
           Array.from({ length: 10 }).map((_, i) => (
-            <div className="w-full aspect-[3/4] bg-gray-200 animate-pulse" />
+            <div
+              key={i}
+              className="w-full aspect-[3/4] bg-gray-200 animate-pulse"
+            />
           ))}
+
+        {error && (
+          <div className="w-full col-span-full py-12 flex flex-col items-center justify-center text-white gap-4">
+            <p>Something went wrong while loading products.</p>
+            <button
+              onClick={() => location.reload()}
+              className="bg-white text-black px-4 py-2 rounded-md"
+            >
+              Refresh
+            </button>
+          </div>
+        )}
 
         {filteredData.map((product) => (
           <CardItem
             key={product.id}
             image={product.imageUrl}
             title={product.name}
-            price={decimals ? formatUnits(product.priceUsdc, decimals) : null}
+            price={product.priceUsdc}
+            decimals={decimals}
+            isDecimalsPending={isPendingDecimals}
+            decimalsError={decimalsError}
+            onBuy={() => {
+              console.log("Buying:", product.name);
+            }}
+            disabled={BigInt(balance ?? 0) < BigInt(product.priceUsdc)}
           />
         ))}
       </div>

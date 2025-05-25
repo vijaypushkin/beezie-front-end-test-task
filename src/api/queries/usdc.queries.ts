@@ -1,14 +1,8 @@
 import { queryOptions } from "@tanstack/react-query";
-import { JsonRpcProvider } from "ethers";
 
-import { addresses } from "@/constants/addresses";
 import { QK } from "@/constants/query-keys.constants";
-import { USDC__factory } from "@/typechain-types";
 import { usdcContract } from "@/services/web3/contracts";
-
-const provider = new JsonRpcProvider(
-  `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`
-);
+import { addresses } from "@/constants/addresses";
 
 const getUsdcDecimals = async (): Promise<bigint> => {
   const decimals = await usdcContract.decimals().catch((err) => {
@@ -24,4 +18,19 @@ const getUsdcDecimalsOptions = queryOptions({
   queryFn: getUsdcDecimals,
 });
 
-export { getUsdcDecimalsOptions };
+const getUserBalance = async (address: string) => {
+  const balance = await usdcContract.balanceOf(address).catch((err) => {
+    console.log(err);
+    return 0n;
+  });
+
+  return balance;
+};
+
+const getUserBalanceOptions = (address: string) =>
+  queryOptions({
+    queryKey: [...QK.USER_BALANCE, { address }],
+    queryFn: () => getUserBalance(address),
+  });
+
+export { getUsdcDecimalsOptions, getUserBalanceOptions };
