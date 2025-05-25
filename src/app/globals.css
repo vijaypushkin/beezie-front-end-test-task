@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --brand: #F5A600;
+  --brand: #f5a600;
 
-  --tertiary: #8EC400;
+  --tertiary: #8ec400;
 
   --bg-primary: #131313;
-  --bg-secondary: #302E2E;
+  --bg-secondary: #302e2e;
 
-  --border-primary: #302E2E88;
+  --border-primary: #302e2e88;
 
-  --text-primary: #FFFFFF;
-  --text-secondary: #9C9C9C;
+  --text-primary: #ffffff;
+  --text-secondary: #9c9c9c;
 
   --my-auto-rows: minmax(410px, 2fr);
 
@@ -24,8 +24,6 @@
   --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
-
 }
 
 @media (prefers-color-scheme: dark) {
