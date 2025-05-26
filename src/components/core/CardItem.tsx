@@ -9,6 +9,8 @@ type CardItemProps = {
   decimals: bigint | undefined;
   isDecimalsPending: boolean;
   decimalsError: Error | null;
+  userBalancePending: boolean;
+  balanceError: Error | null;
   onBuy?: () => void;
   disabled?: boolean;
 };
@@ -22,6 +24,8 @@ const CardItem: React.FC<CardItemProps> = ({
   isDecimalsPending,
   decimalsError,
   decimals,
+  userBalancePending,
+  balanceError,
 }) => {
   return (
     <div className="overflow-hidden flex flex-col mb-[30px] md:mb-0">
@@ -54,17 +58,25 @@ const CardItem: React.FC<CardItemProps> = ({
           </div>
         ) : null}
 
-        {onBuy && (
-          <button
-            onClick={onBuy}
-            disabled={disabled}
-            className={cn(
-              "mt-auto self-end border border-(--brand) text-(--brand) px-4 py-1.5 rounded-md transition disabled:opacity-50",
-              !disabled && "hover:bg-(--brand) hover:text-black"
-            )}
-          >
-            Buy
-          </button>
+        {userBalancePending ? (
+          <div className="h-10 w-[75px] bg-gray-300 rounded-md animate-pulse mt-auto self-end" />
+        ) : balanceError ? (
+          <div className="text-red-500 text-sm mt-auto self-end">
+            Balance error
+          </div>
+        ) : (
+          onBuy && (
+            <button
+              onClick={onBuy}
+              disabled={disabled}
+              className={cn(
+                "mt-auto self-end border border-(--brand) text-(--brand) px-4 py-1.5 rounded-md transition disabled:opacity-50",
+                !disabled && "hover:bg-(--brand) hover:text-black"
+              )}
+            >
+              Buy
+            </button>
+          )
         )}
       </div>
     </div>

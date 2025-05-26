@@ -1,24 +1,22 @@
-import {
-  getUsdcDecimalsOptions,
-  getUserBalanceOptions,
-} from "@/api/queries/usdc.queries";
-import { addresses } from "@/constants/addresses";
-import { useQuery } from "@tanstack/react-query";
-import { formatUnits } from "ethers";
 import { useMemo } from "react";
+import { formatUnits } from "ethers";
+
+import { addresses } from "@/constants/addresses";
+import { useUsdcDecimalsQuery } from "@/hooks/web3/useUsdcDecimals";
+import { useUserBalanceQuery } from "@/hooks/web3/useUserBalance";
 
 const UserBalance: React.FC = () => {
   const {
     data: balance,
     isPending: isPendingBalance,
     error: balanceError,
-  } = useQuery(getUserBalanceOptions(addresses.user));
+  } = useUserBalanceQuery(addresses.user);
 
   const {
     data: decimals,
     isPending: isPendingDecimals,
     error: decimalsError,
-  } = useQuery(getUsdcDecimalsOptions);
+  } = useUsdcDecimalsQuery();
 
   const processedUsdcBalance = useMemo(() => {
     if (balance !== undefined && decimals !== undefined) {
@@ -34,7 +32,12 @@ const UserBalance: React.FC = () => {
       ) : balanceError || decimalsError ? (
         <span className="text-red-400">Balance error</span>
       ) : processedUsdcBalance !== null ? (
-        <span>Balance: ${processedUsdcBalance}</span>
+        <span>
+          Balance:{" "}
+          <span className="font-bold text-2xl font-(family-name:--font-montserrat)">
+            ${processedUsdcBalance}
+          </span>
+        </span>
       ) : null}
     </div>
   );

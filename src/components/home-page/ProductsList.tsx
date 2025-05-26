@@ -1,17 +1,13 @@
 "use client";
 
 import { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 
-import { productsQueryOptions } from "@/api/queries/products.queries";
-import {
-  getUsdcDecimalsOptions,
-  getUserBalanceOptions,
-} from "@/api/queries/usdc.queries";
-
-import { CardItem } from "./CardItem";
+import { CardItem } from "../core/CardItem";
 import { Pill } from "../ui/Pill";
 import { addresses } from "@/constants/addresses";
+import { useProductsQuery } from "@/hooks/products/useProducts";
+import { useUsdcDecimalsQuery } from "@/hooks/web3/useUsdcDecimals";
+import { useUserBalanceQuery } from "@/hooks/web3/useUserBalance";
 
 type ProductsListProps = {
   query: string;
@@ -26,19 +22,19 @@ const ProductsList: React.FC<ProductsListProps> = ({
   sort,
   onFilterClick,
 }) => {
-  const { data = [], isPending, error } = useQuery(productsQueryOptions);
+  const { data = [], isPending, error } = useProductsQuery();
 
   const {
     data: decimals,
     isPending: isPendingDecimals,
     error: decimalsError,
-  } = useQuery(getUsdcDecimalsOptions);
+  } = useUsdcDecimalsQuery();
 
   const {
     data: balance,
     isPending: isPendingBalance,
     error: balanceError,
-  } = useQuery(getUserBalanceOptions(addresses.user));
+  } = useUserBalanceQuery(addresses.user);
 
   const filteredData = useMemo(() => {
     return data
@@ -119,6 +115,8 @@ const ProductsList: React.FC<ProductsListProps> = ({
             decimals={decimals}
             isDecimalsPending={isPendingDecimals}
             decimalsError={decimalsError}
+            userBalancePending={isPendingBalance}
+            balanceError={balanceError}
             onBuy={() => {
               console.log("Buying:", product.name);
             }}

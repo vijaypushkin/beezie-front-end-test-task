@@ -2,7 +2,6 @@ import { queryOptions } from "@tanstack/react-query";
 
 import { QK } from "@/constants/query-keys.constants";
 import { usdcContract } from "@/services/web3/contracts";
-import { addresses } from "@/constants/addresses";
 
 const getUsdcDecimals = async (): Promise<bigint> => {
   const decimals = await usdcContract.decimals().catch((err) => {
